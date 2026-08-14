@@ -91,6 +91,10 @@ export const useFlightsStore = defineStore("flights", {
       const date = criteria.departureDate;
       const passengers = Number(criteria.passengers || 1);
       const cabin = criteria.cabin || "economy";
+
+      if (from === "ANY" && to === "ANY")
+        return this.flights;
+
       return this.flights.filter((flight) => {
         const seats = cabin === "business" ? flight.busSeatsAvailable : flight.ecoSeatsAvailable;
         return (

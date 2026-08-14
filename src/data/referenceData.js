@@ -11,4 +11,5 @@ export const airports = [
   { code: "BKK", city: "Bangkok", airport: "Suvarnabhumi Airport" },
   { code: "KUL", city: "Kuala Lumpur", airport: "Kuala Lumpur International Airport" },
   { code: "TPE", city: "Taipei", airport: "Taoyuan International Airport" },
+  { code: "ANY", city: "", airport: "Anywhere At All" },
 ];

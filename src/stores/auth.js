@@ -105,7 +105,7 @@ export const useAuthStore = defineStore("auth", {
             firstName: payload.firstName.trim(),
             lastName: payload.lastName.trim(),
             email: payload.email.trim().toLowerCase(),
-            contactNumber: payload.contactNumber.trim(),
+            mobileNo: payload.contactNumber.trim(),
             password: payload.password,
           },
         });

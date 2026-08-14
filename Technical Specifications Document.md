@@ -495,8 +495,7 @@ The design will follow the provided visual mockup reference with:
 ### **API Interface**
 
 * Booking API   
-* Flights API   
-* Ticketing API   
+* Flights API     
 * Payment API
 * Users API
 

@@ -16,8 +16,8 @@ const flightsStore = useFlightsStore();
 const uiStore = useUiStore();
 
 const form = reactive({
-  from: props.initialValues.from || flightsStore.lastSearch.from || "MNL",
-  to: props.initialValues.to || flightsStore.lastSearch.to || "NRT",
+  from: props.initialValues.from || flightsStore.lastSearch.from || "ANY",
+  to: props.initialValues.to || flightsStore.lastSearch.to || "ANY",
   departureDate: props.initialValues.departureDate || flightsStore.lastSearch.departureDate,
   passengers: Number(props.initialValues.passengers || flightsStore.lastSearch.passengers || 1),
   cabin: props.initialValues.cabin || flightsStore.lastSearch.cabin || "economy",
@@ -27,7 +27,7 @@ watch(() => props.initialValues, (values) => {
   Object.assign(form, values);
 }, { deep: true });
 
-const availableDestinations = computed(() => airports.filter((airport) => airport.code !== form.from));
+const availableDestinations = computed(() => airports.filter((airport) => airport.code === "ANY" || airport.code !== form.from));
 const today = new Date().toISOString().slice(0, 10);
 
 function swapLocations() {
@@ -35,7 +35,9 @@ function swapLocations() {
 }
 
 function submitSearch() {
-  if (form.from === form.to) {
+  if (form.from === form.to &&
+      form.from !== "ANY" &&
+      form.to !== "ANY") {
     uiStore.notify("Departure and destination must be different.", "error");
     return;
   }

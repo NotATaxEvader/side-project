@@ -42,6 +42,12 @@ const resultAirlines = computed(() => {
   return ids.map((id) => flightsStore.getAirlineById(id)).filter(Boolean);
 });
 
+if(criteria.from === "ANY" &&
+   criteria.to === "ANY") {
+    baseResults.value = computed(() => flightsStore.fetchFlights());
+    console.log("IN THE IF STATEMENT")
+}
+
 const results = computed(() => {
   let items = baseResults.value.filter((flight) => {
     const multiplier = criteria.cabin === "business" ? 1.85 : 1;
@@ -76,7 +82,8 @@ function resetFilters() {
         <div class="page-title-row">
           <div>
             <span class="eyebrow">Flight results</span>
-            <h1>{{ fromAirport?.city || criteria.from }} to {{ toAirport?.city || criteria.to }}</h1>
+            <h1 v-if="criteria.from === 'ANY' && criteria.to === 'ANY'">All Flights</h1>
+            <h1 v-else>{{ fromAirport?.city || criteria.from }} to {{ toAirport?.city || criteria.to }}</h1>
             <p>{{ criteria.departureDate }} · {{ criteria.passengers }} {{ criteria.passengers === 1 ? "traveler" : "travelers" }} · {{ criteria.cabin }}</p>
           </div>
         </div>
