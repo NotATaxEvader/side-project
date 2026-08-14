@@ -1,4 +1,4 @@
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "http://localhost:4000").replace(/\/$/, "");
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "https://side-project-server.onrender.com").replace(/\/$/, "");
 const TOKEN_KEY = "altitude_access_token";
 
 export function getAccessToken() {
